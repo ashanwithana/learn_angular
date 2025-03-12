@@ -1,0 +1,38 @@
+<p>roles works!</p>
+
+
+<div class="row">
+    <div class="col-2">{{firstName}}</div>
+    <div class="col-2">{{lastName}}</div>
+    <div class="col-2">{{age}}</div>
+    <div class="col-2">{{currentDate}}</div>
+    <div class="col-2">{{is_active}}</div>
+    <div class="col-2">{{selectedState}}</div>
+</div>
+
+<div class="row">
+    <div class="col-3">
+        <input type="text" [value]="firstName" class="form-control">
+    </div>
+    <div class="col-3">
+        <input type="text" [(ngModel)]="firstName" class="form-control">
+    </div>
+    <div class="col-3">
+        <input [type]="inputType">
+    </div>
+    <div class="col-3">
+        <select [(ngModel)]="selectedState" class="form-control">
+            <option value="Colombo">Colombo</option>
+            <option value="Gampaha">Gampaha</option>
+            <option value="Kaluthara">Kaluthara</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3">
+        <input type="button" value="Click Me" (click)="showWelcomeAlert()">
+    </div>
+    <div class="col-3">
+        <input type="button" value="Click Me" (click)="showMessage('welcome')">
+    </div>
+</div>
