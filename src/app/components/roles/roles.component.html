@@ -1,4 +1,23 @@
-<p>roles works!</p>
+<div class="row">
+    <div class="col-12">
+        <table class="table table-bordered">
+<thead>
+    <tr>
+        <th>Role Id</th>
+        <th>Role Name</th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let item of roleList; let srno = index">
+        <td>{{srno+1}}</td>
+        <td>{{item.role}}</td>
+    </tr>
+</tbody>
+        </table>
+    </div>
+</div>
+
+<!-- <p>roles works!</p>
 
 
 <div class="row">
@@ -35,4 +54,4 @@
     <div class="col-3">
         <input type="button" value="Click Me" (click)="showMessage('welcome')">
     </div>
-</div>
+</div> -->
