@@ -11,16 +11,19 @@ import { IDesignation } from '../../model/interface/designation';
 })
 export class DesignationComponent implements OnInit {
   designationList: IDesignation[] = [];
-
+  isLoader: boolean = true;
   masterService = inject(MasterService);
 
   ngOnInit(): void {
-    this.masterService
-      .getDesignations()
-      .subscribe((result: APIResponseModel) => {
+    this.masterService.getDesignations().subscribe(
+      (result: APIResponseModel) => {
         this.designationList = result.data;
-      },error=>{
-        alert('Failed to fetch data')
-      });
+        this.isLoader = false;
+      },
+      (error) => {
+        alert('Failed to fetch data');
+        this.isLoader = false;
+      }
+    );
   }
 }
