@@ -7,10 +7,12 @@ import { Client } from '../../model/class/Client';
 import { ClientProjectService } from '../../services/clientProject/client-project.service';
 import { IClientProject } from '../../model/interface/clientProject';
 import { DatePipe } from '@angular/common';
+import { AlertComponent } from "../../reusableComponent/alert/alert.component";
+import { ButtonComponent } from "../../reusableComponent/button/button.component";
 
 @Component({
   selector: 'app-client-project',
-  imports: [ReactiveFormsModule, DatePipe],
+  imports: [ReactiveFormsModule, DatePipe, AlertComponent, ButtonComponent],
   templateUrl: './client-project.component.html',
   styleUrl: './client-project.component.css',
 })

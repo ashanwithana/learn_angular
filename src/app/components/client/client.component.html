@@ -1,3 +1,4 @@
+<app-alert [alertType]="'Error! '" [message]="'reusable component'"></app-alert>
 <div class="row">
   <div class="col-9">
     <div class="card">
@@ -150,9 +151,15 @@
         </div>
 
         <div class="col-6">
-          <button class="btn btn-success" (click)="onSaveClient()">
+          <app-button
+                [btnClass]="'btn btn-success'"
+                [btnText]="
+                  clientObj.clientId != 0 ? 'Update Client' : 'Create Client'
+                " (onBtnClicked)="onSaveClient($event)"
+              ></app-button>
+          <!-- <button class="btn btn-success" (click)="onSaveClient()">
             Save Client
-          </button>
+          </button> -->
         </div>
       </div>
     </div>

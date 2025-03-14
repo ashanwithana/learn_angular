@@ -3,10 +3,12 @@ import { FormsModule } from '@angular/forms';
 import { Client } from '../../model/class/Client';
 import { ClientService } from '../../services/client/client.service';
 import { APIResponseModel } from '../../model/interface/common';
+import { AlertComponent } from '../../reusableComponent/alert/alert.component';
+import { ButtonComponent } from "../../reusableComponent/button/button.component";
 
 @Component({
   selector: 'app-client',
-  imports: [FormsModule],
+  imports: [FormsModule, AlertComponent, ButtonComponent],
   templateUrl: './client.component.html',
   styleUrl: './client.component.css',
 })
@@ -25,7 +27,7 @@ export class ClientComponent implements OnInit {
     });
   }
 
-  onSaveClient() {
+  onSaveClient(data:string) {
     this.clientService
       .addUpdate(this.clientObj)
       .subscribe((result: APIResponseModel) => {
