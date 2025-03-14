@@ -1,14 +1,16 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ClientService } from '../../services/client/client.service';
 import { APIResponseModel } from '../../model/interface/common';
 import { IEmployee } from '../../model/interface/employee';
 import { Client } from '../../model/class/Client';
 import { ClientProjectService } from '../../services/clientProject/client-project.service';
+import { IClientProject } from '../../model/interface/clientProject';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-client-project',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, DatePipe],
   templateUrl: './client-project.component.html',
   styleUrl: './client-project.component.css',
 })
@@ -33,10 +35,12 @@ export class ClientProjectComponent implements OnInit {
   clientProjectService = inject(ClientProjectService);
   employeeList: IEmployee[] = [];
   clientList: Client[] = [];
+  projectList = signal<IClientProject[]>([]);
 
   ngOnInit(): void {
     this.getAllClients();
     this.getAllEmployee();
+    this.getAllClientProject();
   }
 
   getAllEmployee() {
@@ -50,14 +54,22 @@ export class ClientProjectComponent implements OnInit {
     });
   }
 
+  getAllClientProject() {
+    this.clientProjectService
+      .getAllClientProjects()
+      .subscribe((res: APIResponseModel) => {
+        this.projectList.set(res.data);
+      });
+  }
+
   onSaveProject() {
     const formValue = this.projectForm.value;
-    debugger;
     this.clientProjectService
       .addUpdateClientProject(formValue)
       .subscribe((result: APIResponseModel) => {
         if (result.result) {
           alert('Client Project Craeted Succesfully');
+          this.getAllClientProject();
         } else {
           alert(result.message);
         }

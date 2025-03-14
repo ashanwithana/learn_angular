@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { APIResponseModel } from '../../model/interface/common';
 import { environment } from '../../../environments/environment.development';
-import { Client } from '../../model/class/Client';
+import { IClientProject } from '../../model/interface/clientProject';
+import { Constant } from '../../constants/Constant';
 
 @Injectable({
   providedIn: 'root',
@@ -13,10 +14,10 @@ export class ClientProjectService {
 
   getAllClientProjects(): Observable<APIResponseModel> {
     return this.http.get<APIResponseModel>(
-      environment.API_URL + 'GetAllClientProjects'
+      environment.API_URL + Constant.API_METHOD.GET_ALL_CLIENT_PROJECT
     );
   }
-  addUpdateClientProject(obj: Client): Observable<APIResponseModel> {
+  addUpdateClientProject(obj: IClientProject): Observable<APIResponseModel> {
     return this.http.post<APIResponseModel>(
       environment.API_URL + 'AddUpdateClientProject',
       obj
